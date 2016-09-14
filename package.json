@@ -40,6 +40,7 @@
     "nodemon": "^1.10.2",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
-    "request": "^2.74.0"
+    "request": "^2.74.0",
+    "twitter": "^1.4.0"
   }
 }
