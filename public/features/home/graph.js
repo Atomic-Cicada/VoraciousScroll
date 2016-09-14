@@ -1,12 +1,11 @@
-angular.module('smartNews.home', [])
+angular.module('smartNews.home')
 
-.controller('GraphCtrl', function($scope, TopTrendsFactory, saveArticle, isAuth) {
-
-  // $scope.graph = GraphFactory.currentGraph;
-
-  $scope.isAuth = function() {
-    $scope.user = isAuth();
-    return !!isAuth();
-  };
-
+.controller('GraphCtrl', function($scope, $http, TopTrendsFactory) {
+  d3.select('#chart')
+  .selectAll("div")
+  .data([4, 8, 15, 16, 23, 42])
+  .enter()
+  .append("div")
+  .style("height", (d)=> d + "px");
 });
+

@@ -16,7 +16,7 @@ angular.module('smartNews.home', ['smartNews.services'])
 .directive('graph', function() {
   return {
     templateUrl: 'features/home/graph.html',
-    controller: 'graphCtrl'
+    controller: 'GraphCtrl'
   };
 })
 

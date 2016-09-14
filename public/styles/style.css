@@ -77,6 +77,13 @@ h3 {
   cursor: pointer;
 }
 
+#chart div {
+  display: inline-block;
+  background: #4285F4;
+  width: 20px;
+  margin-right: 3px;
+}
+
 /* Navbar */
 
 .navbar {
