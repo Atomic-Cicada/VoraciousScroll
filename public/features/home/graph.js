@@ -1,4 +1,4 @@
-angular.module('smartNews.home')
+angular.module('smartNews.home', [])
 
 .controller('GraphCtrl', function($scope, TopTrendsFactory, saveArticle, isAuth) {
 

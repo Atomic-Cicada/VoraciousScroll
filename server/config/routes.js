@@ -27,7 +27,7 @@ module.exports = function(app, express) {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  app.get('/enter', function(req, res){
+  app.get('/enter', function(req, res) {
     console.log(__dirname);
     res.sendFile(path.join(__dirname + '/../../public/layout.html'));
   });
@@ -87,7 +87,7 @@ module.exports = function(app, express) {
 
   app.route('/unsaveArticle/:id')
     .delete(function(req, res) {
-      db.unsaveArticle.delete(req, function(err, success){
+      db.unsaveArticle.delete(req, function(err, success) {
         res.send(success);
       });
     });
