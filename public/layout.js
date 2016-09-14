@@ -58,28 +58,28 @@ angular.module('smartNews', [
   };
 })
 
-.directive('navbar', function(){
+.directive('navbar', function() {
   return {
     templateUrl: 'features/nav/nav.html',
     controller: 'NavCtrl'
   };
 })
 
-.controller('SearchCtrl', function($scope, $state, $http, renderGraph){
+.controller('SearchCtrl', function($scope, $state, $http, renderGraph) {
   $scope.searchinput = '';
 
-  $scope.getDropdown = function(val){
+  $scope.getDropdown = function(val) {
     return $http({
       method: 'GET',
       url: '/input/' + val
     })
-    .then(function(response){
+    .then(function(response) {
       var dropdown = [];
       var pages = response.data.query.pages;
-      for (var i in pages){
+      for (var i in pages) {
         dropdown.push({
           title: pages[i].title,
-          image: pages[i].thumbnail ? pages[i].thumbnail.source : ""
+          image: pages[i].thumbnail ? pages[i].thumbnail.source : ''
         });
       }
       return dropdown;
@@ -104,7 +104,7 @@ angular.module('smartNews', [
 
           });
         },
-        function(error){
+        function(error) {
           console.log('Error', error);
         }
       );
