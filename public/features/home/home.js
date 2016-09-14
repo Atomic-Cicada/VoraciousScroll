@@ -17,6 +17,10 @@ angular.module('smartNews.home', ['smartNews.services'])
   return {
     templateUrl: 'features/home/graph.html',
     controller: 'GraphCtrl'
+.directive('hometweets', function() {
+  return {
+    templateUrl: 'features/home/homeTweets.html',
+    controller: 'HomeTweetsCtrl'
   };
 })
 

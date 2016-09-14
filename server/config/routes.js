@@ -6,8 +6,15 @@ var googleTrends = require('../news-apis/google-trends-helpers.js');
 var request = require('request');
 var db = require('./db.controller.js');
 var path = require('path');
+var twitter = require('../twitter/twitter-helpers.js');
 
 module.exports = function(app, express) {
+
+/**************** TWITTER API *****************/
+  app.get('/api/news/tweets', function() {
+    twitter.getTweets();
+  });
+
 
 /**************** AUTOCOMPLETE *****************/
   app.route('/input/:input')
@@ -62,11 +69,6 @@ module.exports = function(app, express) {
     // googleTrends.hotTrends(resultLimit, country, res)
       // resultLimit: Number
       // country: String, ex: 'US', default is US
-
-  app.route('/api/news/topTrends')
-    .get(function(req, res) {
-      googleTrends.hotTrends(res, 10, 'US');
-    });
 
   app.route('/api/news/topTrendsDetail')
     .get(function(req, res) {

@@ -7,12 +7,12 @@ var AylienNewsApi = require('aylien-news-api');
 var api = new AylienNewsApi.DefaultApi();
 
 // Configure API ID: app_id
-var app_id = api.apiClient.authentications['app_id'];
-app_id.apiKey = process.env.AYLIEN_APP_ID;
+var appId = api.apiClient.authentications['app_id'];
+appId.apiKey = process.env.AYLIEN_APP_ID;
 
 // Configure API key: app_key
-var app_key = api.apiClient.authentications['app_key'];
-app_key.apiKey = process.env.AYLIEN_APP_KEY;
+var appKey = api.apiClient.authentications['app_key'];
+appKey.apiKey = process.env.AYLIEN_APP_KEY;
 
 var timelineData = function(input, res) {
 

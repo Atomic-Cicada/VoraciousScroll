@@ -44,7 +44,6 @@ angular.module('smartNews', [
   $httpProvider.interceptors.push('requestCookie');
 })
 .factory('requestCookie', function ($document, $cookies) {
-  // console.log('this factory');
   return {
     request: function (request) {
       // var parsedCookie = $cookies.get('authenticate');
@@ -52,7 +51,6 @@ angular.module('smartNews', [
       // // config.headers['x-session-token'] = SessionService.token
       // // request.session.passport = parsedCookie;
       request.xsrfCookieName = 'authenticate';
-      // console.log(request, 'My request object');
       return request;
     }
   };
