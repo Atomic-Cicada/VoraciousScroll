@@ -1,8 +1,10 @@
 angular.module('smartNews.home')
 
-.controller('PrimaryArticleCtrl', function($scope, TopTrendsFactory, saveArticle, isAuth) {
+.controller('PrimaryArticleCtrl', function($scope, $stateParams, $http, TopTrendsFactory, saveArticle, isAuth, renderGraph) {
 
   $scope.news = TopTrendsFactory.primaryArticle;
+  $scope.articleReceived = $stateParams.articleReceived;
+  $scope.selectedDate = renderGraph.selectedDate;
 
   $scope.isAuth = function() {
     $scope.user = isAuth();
@@ -23,5 +25,32 @@ angular.module('smartNews.home')
     };
     saveArticle(article);
   };
+
+  $scope.getArticle = function() {
+
+    var input = $scope.topicName;
+    var publishStart = $scope.selectedDate.startDate;
+    var publishEnd = $scope.selectedDate.endDate;
+
+    var url = '/seearticle?input=' + input + '&start=' + publishStart + '&end=' + publishEnd;
+    $http({
+      method: 'GET',
+      url: url
+    }).then(
+      function(data) {
+        $scope.articleReceived = true;
+        $scope.articles = data.data.stories;
+        // DATA NEEDED IS IN SCOPE.NEWS
+        $scope.news = $scope.articles;
+      },
+      function(err) {
+        console.log('THERE WAS AN ERROR RECEIVING DATA FROM SEEARTICLE', err);
+      }
+    );
+  };
+
+  $scope.$on('user:clickDate', function(event, data) {
+    $scope.getArticle();
+  });
 
 });

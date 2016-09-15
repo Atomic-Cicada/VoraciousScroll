@@ -1,4 +1,4 @@
-var aylienKeys = require('../../keys.js').aylien;
+// var aylienKeys = require('../../keys.js').aylien;
 var AylienNewsApi = require('aylien-news-api');
 
 /************* AYLIEN API HELPERS ********************/
@@ -7,12 +7,12 @@ var AylienNewsApi = require('aylien-news-api');
 var api = new AylienNewsApi.DefaultApi();
 
 // Configure API ID: app_id
-var app_id = api.apiClient.authentications['app_id'];
-app_id.apiKey = aylienKeys.app_id;
+var appId = api.apiClient.authentications['app_id'];
+appId.apiKey = process.env.AYLIEN_APP_ID;
 
 // Configure API key: app_key
-var app_key = api.apiClient.authentications['app_key'];
-app_key.apiKey = aylienKeys.app_key;
+var appKey = api.apiClient.authentications['app_key'];
+appKey.apiKey = process.env.AYLIEN_APP_KEY;
 
 var timelineData = function(input, res) {
 

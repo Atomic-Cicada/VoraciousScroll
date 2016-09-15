@@ -63,11 +63,6 @@ module.exports = function(app, express) {
       // resultLimit: Number
       // country: String, ex: 'US', default is US
 
-  app.route('/api/news/topTrends')
-    .get(function(req, res) {
-      googleTrends.hotTrends(res, 10, 'US');
-    });
-
   app.route('/api/news/topTrendsDetail')
     .get(function(req, res) {
       googleTrends.hotTrendsDetail(res, 10, 'US');

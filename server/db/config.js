@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/voraciousscroll');
+var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/voraciousscroll';
+
+mongoose.connect(mongoUri);
 
 module.exports = mongoose;

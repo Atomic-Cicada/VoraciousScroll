@@ -1,4 +1,4 @@
-var keys = require('../../keys.js');
+// var keys = require('../../keys.js');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -9,8 +9,8 @@ var User = require('../db/user.schema.js');
 /****************** PASSPORT CONFIG ***************/
 
 passport.use(new FacebookStrategy({
-  clientID: keys.facebook.FACEBOOK_APP_ID,
-  clientSecret: keys.facebook.FACEBOOK_APP_SECRET,
+  clientID: process.env.FACEBOOK_APP_ID,
+  clientSecret: process.env.FACEBOOK_APP_SECRET,
   callbackURL: 'http://localhost:3000/auth/facebook/callback',
   profileFields: ['id', 'name', 'picture.type(large)', 'email', 'gender']
 },

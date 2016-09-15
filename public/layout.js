@@ -44,7 +44,6 @@ angular.module('smartNews', [
   $httpProvider.interceptors.push('requestCookie');
 })
 .factory('requestCookie', function ($document, $cookies) {
-  // console.log('this factory');
   return {
     request: function (request) {
       // var parsedCookie = $cookies.get('authenticate');
@@ -52,34 +51,33 @@ angular.module('smartNews', [
       // // config.headers['x-session-token'] = SessionService.token
       // // request.session.passport = parsedCookie;
       request.xsrfCookieName = 'authenticate';
-      // console.log(request, 'My request object');
       return request;
     }
   };
 })
 
-.directive('navbar', function(){
+.directive('navbar', function() {
   return {
     templateUrl: 'features/nav/nav.html',
     controller: 'NavCtrl'
   };
 })
 
-.controller('SearchCtrl', function($scope, $state, $http, renderGraph){
+.controller('SearchCtrl', function($scope, $state, $http, renderGraph) {
   $scope.searchinput = '';
 
-  $scope.getDropdown = function(val){
+  $scope.getDropdown = function(val) {
     return $http({
       method: 'GET',
       url: '/input/' + val
     })
-    .then(function(response){
+    .then(function(response) {
       var dropdown = [];
       var pages = response.data.query.pages;
-      for (var i in pages){
+      for (var i in pages) {
         dropdown.push({
           title: pages[i].title,
-          image: pages[i].thumbnail ? pages[i].thumbnail.source : ""
+          image: pages[i].thumbnail ? pages[i].thumbnail.source : ''
         });
       }
       return dropdown;
@@ -95,7 +93,6 @@ angular.module('smartNews', [
       })
       .then(
         function(obj) {
-          console.log('obj----->', obj);
           $state.go('main.results', {input: $scope.searchinput, articleReceived: false})
           .then(function() {
             window.objWin = obj;
@@ -104,7 +101,7 @@ angular.module('smartNews', [
 
           });
         },
-        function(error){
+        function(error) {
           console.log('Error', error);
         }
       );

@@ -13,15 +13,13 @@ angular.module('smartNews.home', ['smartNews.services'])
     controller: 'TopTrendsCtrl'
   };
 })
-.directive('graph', function() {
+.directive('hometweets', function() {
   return {
-    templateUrl: 'features/home/graph.html',
-    controller: 'GraphCtrl'
+    templateUrl: 'features/home/homeTweets.html',
   };
 })
 
 // Home Controller
 .controller('HomeCtrl', function($scope) {
   $scope.test = 'Home View';
-
 });

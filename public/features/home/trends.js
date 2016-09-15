@@ -5,7 +5,8 @@ angular.module('smartNews.home')
   $scope.topTrends = TopTrendsFactory.topTrends;
 
   $scope.selectArticle = function (topic, topicName) {
-    var url = '/results/' + topicName;
+    $scope.topicName = topicName;
+    var url = '/results/' + $scope.topicName;
     $http({
       method: 'GET',
       url: url
@@ -16,8 +17,11 @@ angular.module('smartNews.home')
     var title = sanitizeTitle(topic.articleTitle);
     TopTrendsFactory.getPrimaryArticle(title)
     .then(function (article) {
-      TopTrendsFactory.primaryArticle[0] = article.data.stories[0];
+      $scope.news = article.data.stories;
     });
   };
 
+  setTimeout(function() {
+    $scope.selectArticle($scope.topTrends[0], $scope.topTrends[0].topic);
+  }, 800);
 });
