@@ -8,7 +8,8 @@ angular.module('smartNews', [
   'ngCookies',
   'smartNews.services',
   'ngSanitize',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ngtweet'
 ])
 
 .config(function($urlRouterProvider, $stateProvider, $httpProvider) {

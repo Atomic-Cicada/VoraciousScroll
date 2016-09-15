@@ -11,7 +11,7 @@ var twitter = require('../twitter/twitter-helpers.js');
 module.exports = function(app, express) {
 
 /**************** TWITTER API *****************/
-  app.get('/api/news/tweets', function() {
+  app.get('/api/news/tweets', function(req, res) {
     twitter.getTweets();
   });
 

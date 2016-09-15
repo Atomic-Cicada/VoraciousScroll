@@ -41,7 +41,6 @@ angular.module('smartNews.results', [])
       url: url
     }).then(
       function(data) {
-        console.log(data, 'ARTICLE DATA');
         $scope.articleReceived = true;
         $scope.articles = data.data.stories;
       },

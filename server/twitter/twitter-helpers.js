@@ -7,15 +7,26 @@ var client = new Twitter({
   access_token_secret: 'LQTrbKWUKf7ukYABsdCj1dRwCmirDnulgBt3Kh66gm5qm'
 });
 
-var getTweets = function(term) {
-  var stream = client.stream('statuses/filter', {track: 'javascript'});
-  stream.on('data', function(event) {
-    console.log(event && event.text);
+var getTweets = function() {
+  console.log('getTweets');
+  var query = 'puppy filter:twimg';
+  client.get('search/tweets', {q: query}, function(error, tweets, response) {
+    console.log(tweets.search_metadata.count, 'tweet count');
+    console.log(tweets);
+    // tweets.statuses.forEach(function(item) {
+    //   console.log(item.text);
+    //   console.log(item.created_at);
+    //   console.log('----------')
+    // });
   });
+  // var stream = client.stream('statuses/filter', {track: 'javascript'});
+  // stream.on('data', function(event) {
+  //   console.log(event && event.text);
+  // });
    
-  stream.on('error', function(error) {
-    throw error;
-  });
+  // stream.on('error', function(error) {
+  //   throw error;
+  // });
 };
 
 module.exports = {
