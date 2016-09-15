@@ -57,7 +57,8 @@ angular.module('smartNews.home')
   $scope.sendEmail = function() {
     $http({
       method: 'GET',
-      url: '/sendEmail'
+      url: '/sendEmail',
+      data: 'Hello THERE!'
     }).then(function successCallback(response) {
       console.log('ok great, success');
       // this callback will be called asynchronously
