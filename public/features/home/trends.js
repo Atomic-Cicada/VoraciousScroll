@@ -3,9 +3,11 @@ angular.module('smartNews.home')
 .controller('TopTrendsCtrl', function($scope, $http, TopTrendsFactory, renderGraph) {
   var sanitizeTitle = TopTrendsFactory.sanitizeTitle;
   $scope.topTrends = TopTrendsFactory.topTrends;
+  $scope.topicName;
 
   $scope.selectArticle = function (topic, topicName) {
-    var url = '/results/' + topicName;
+    $scope.topicName = topicName;
+    var url = '/results/' + $scope.topicName;
     $http({
       method: 'GET',
       url: url
