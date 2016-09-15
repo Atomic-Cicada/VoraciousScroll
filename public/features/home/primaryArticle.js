@@ -2,6 +2,7 @@ angular.module('smartNews.home')
 
 .controller('PrimaryArticleCtrl', function($scope, $stateParams, $http, TopTrendsFactory, saveArticle, isAuth, renderGraph) {
 
+
   $scope.news = TopTrendsFactory.primaryArticle;
   $scope.articleReceived = $stateParams.articleReceived;
   $scope.selectedDate = renderGraph.selectedDate;
@@ -51,4 +52,21 @@ angular.module('smartNews.home')
   $scope.$on('user:clickDate', function(event, data) {
     $scope.getArticle();
   });
+
+  // but this into a factory and into the services.js if it gets too big.
+  $scope.sendEmail = function() {
+    $http({
+      method: 'GET',
+      url: '/sendEmail'
+    }).then(function successCallback(response) {
+      console.log('ok great, success');
+      // this callback will be called asynchronously
+      // when the response is available
+    }, function errorCallback(response) {
+      console.log('your angular http is failing');
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
+  };
+
 });

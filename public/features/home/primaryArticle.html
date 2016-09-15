@@ -3,12 +3,13 @@
     {{ news[0].title }}
   </a>
   <span class="save-button" ng-show="isAuth()">
-    <button ng-click="clickSave()" class="btn btn-default">
+    <button ng-click="clickSave(); sendEmail()" class="btn btn-default">
       Save Article
     </button>
   </span>
 </h2>
-
+<!-- ; sendEmail()
+ -->
 <div class="article-subheading">
   <span>
     {{ news[0].source.name }}

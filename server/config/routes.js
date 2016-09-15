@@ -6,6 +6,7 @@ var googleTrends = require('../news-apis/google-trends-helpers.js');
 var watsonTone = require('../news-apis/watson-tone-analysis-helpers.js');
 var request = require('request');
 var db = require('./db.controller.js');
+var mail = require('../mails/helloWorld.js');
 var path = require('path');
 
 module.exports = function(app, express) {
@@ -89,17 +90,27 @@ module.exports = function(app, express) {
       });
     });
 
+  /************************ SEND EMAILS **********************************/
+  app.route('/sendEmail')
+    .get(function(req, res) {
+      mail.sendEmail();
+      console.log('receiving the get request on server side!!');
+    });
 
-  // Error handling: send log the error and send status 500. This handles one error.
-  app.use(function(err, req, res, next) {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
-  });
 
   /************************ TONE ANALYSIS **********************************/
   app.route('/api/toneanalysis')
     .get(function(req, res) {
       watsonTone.analyzeTone(req, res);
     });
+<<<<<<< d8e2bdaff2b0ce2ded2365652a99c33afc4d5132
+=======
+
+// Error handling: send log the error and send status 500. This handles one error.
+  app.use(function(err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  });
+>>>>>>> Sending out a barebones email when button is clicked on user side
 
 };

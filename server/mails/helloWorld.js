@@ -13,9 +13,11 @@ var request = sg.emptyRequest({
   body: mail.toJSON(),
 });
 
-sg.API(request, function(error, response) {
-  console.log(response.statusCode);
-  console.log('here is our response ===>', response.body);
-  console.log(response.headers);
-});
-
+exports.sendEmail = function() {
+  console.log('ok in here at least');
+  sg.API(request, function(error, response) {
+    console.log(response.statusCode);
+    console.log('here is our response ===>', response.body);
+    console.log(response.headers);
+  });
+};
