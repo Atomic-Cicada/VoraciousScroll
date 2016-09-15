@@ -3,9 +3,7 @@ angular.module('smartNews.home')
 .controller('PrimaryArticleCtrl', function($scope, $stateParams, $http, TopTrendsFactory, saveArticle, isAuth, renderGraph) {
 
   $scope.news = TopTrendsFactory.primaryArticle;
-
   $scope.articleReceived = $stateParams.articleReceived;
-
   $scope.selectedDate = renderGraph.selectedDate;
 
   $scope.isAuth = function() {
@@ -42,6 +40,7 @@ angular.module('smartNews.home')
       function(data) {
         $scope.articleReceived = true;
         $scope.articles = data.data.stories;
+        // DATA NEEDED IS IN SCOPE.NEWS
         $scope.news = $scope.articles;
       },
       function(err) {

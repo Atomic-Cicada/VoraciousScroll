@@ -6,15 +6,8 @@ var googleTrends = require('../news-apis/google-trends-helpers.js');
 var request = require('request');
 var db = require('./db.controller.js');
 var path = require('path');
-var twitter = require('../twitter/twitter-helpers.js');
 
 module.exports = function(app, express) {
-
-/**************** TWITTER API *****************/
-  app.get('/api/news/tweets', function(req, res) {
-    twitter.getTweets();
-  });
-
 
 /**************** AUTOCOMPLETE *****************/
   app.route('/input/:input')

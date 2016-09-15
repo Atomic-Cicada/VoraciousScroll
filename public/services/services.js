@@ -42,7 +42,10 @@ angular.module('smartNews.services', ['ngCookies'])
     var x = d3.scaleTime().range([0, width]);
     var y = d3.scaleLinear().range([height, 0]);
 
-    var svg = d3.select(renderTo)
+    var svg = d3.select(renderTo);
+    svg.selectAll('*').remove();
+
+    svg = d3.select(renderTo)
       .append('div')
       // .classed('svg-container', true) //container class to make it responsive
       .append('svg')
@@ -271,29 +274,12 @@ angular.module('smartNews.services', ['ngCookies'])
     });
   };
 
-  var setPrimaryArticle = function(article) {
-    primaryArticle[0] = article;
-  };
-
-  var getTopicTweets = function(topic) {
-    return $http({
-      method: 'GET',
-      url: '/api/news/tweets'
-    })
-    .then(function(response) {
-      console.log('server response');
-      // console.log(response);
-    });
-  };
-
   topTrendsGoogleTrends();
 
   return {
     topTrends: topTrends,
     primaryArticle: primaryArticle,
-    setPrimaryArticle: setPrimaryArticle,
     getPrimaryArticle: getPrimaryArticle,
     sanitizeTitle: sanitizeTitle,
-    getTopicTweets: getTopicTweets
   };
 });

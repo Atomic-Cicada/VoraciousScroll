@@ -13,11 +13,6 @@ angular.module('smartNews.home', ['smartNews.services'])
     controller: 'TopTrendsCtrl'
   };
 })
-.directive('graph', function() {
-  return {
-    templateUrl: 'features/home/graph.html',
-  };
-})
 .directive('hometweets', function() {
   return {
     templateUrl: 'features/home/homeTweets.html',
@@ -27,5 +22,4 @@ angular.module('smartNews.home', ['smartNews.services'])
 // Home Controller
 .controller('HomeCtrl', function($scope) {
   $scope.test = 'Home View';
-
 });
