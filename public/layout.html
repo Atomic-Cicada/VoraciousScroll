@@ -22,18 +22,15 @@
   <script src="features/home/home.js"></script>
   <script src="features/home/trends.js"></script>
   <script src="features/home/primaryArticle.js"></script>
+  <script src="features/home/graph.js"></script>
   <script src="features/profile/profile.js"></script>
   <script src="layout.js"></script>
   <script src="features/nav/nav.js"></script>
 </head>
 
-<body onresize="renderGraphWin(objWin)">
-  <script>
-  console.log('script running');
-  var myFunction = function() {
-    console.log('okay');
-  };
-  </script>
+<!-- There may be no need for the onresize="renderGraphWin(objWin)" below
+ -->
+<body onresize="renderGraphWin(objWin)" >
   <navbar></navbar>
   <h1><a ui-sref="main.home">News Juice</a></h1>
   <div ui-view class="container"></div>

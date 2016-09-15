@@ -73,7 +73,7 @@ User.saveArticle = function(req, callback) {
 
 User.unsaveArticle = function(req, callback) {
   if (getUserObj(req)) {
-    User.update({_facebookUniqueID: getUserObj(req)._facebookUniqueID}, { $pull: { articles: {_id: req.params.id} } }, function(err, success){
+    User.update({_facebookUniqueID: getUserObj(req)._facebookUniqueID}, { $pull: { articles: {_id: req.params.id} } }, function(err, success) {
       callback(err, success);
     });
   }

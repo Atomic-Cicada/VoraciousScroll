@@ -77,6 +77,13 @@ h3 {
   cursor: pointer;
 }
 
+#chart div {
+  display: inline-block;
+  background: #4285F4;
+  width: 600px;
+  margin-right: 3px;
+}
+
 /* Navbar */
 
 .navbar {
@@ -101,6 +108,11 @@ h3 {
 
 #home-right-div {
   padding-right: 10px;
+}
+
+#graphHomePage {
+  height: 400px;
+  width: 400px;
 }
 
 /* Trend Chart */

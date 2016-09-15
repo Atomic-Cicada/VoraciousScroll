@@ -16,21 +16,21 @@ angular.module('smartNews.services', ['ngCookies'])
     endDate: 'NOW'
   };
 
-  var renderGraph = function(dataObj) {
+  var renderGraph = function(dataObj, renderTo) {
 
     data = dataObj.data.timeSeries;
 
     //clear out contents of graph prior to rendering, to prevent stacking graphs
     // using 'window' is necessary here due to lexical scope.
-    if (window.graph.innerHTML !== undefined) {
-      window.graph.innerHTML = '';
-    }
+    // if (window.graph.innerHTML !== undefined) {
+    //   window.graph.innerHTML = '';
+    // }
 
     // set graph dimensions and margins
     var margin = { top: 0, right: 50, bottom: 50, left: 50 };
 
     // fixed size graph. These values are shorter than true innerWidth / innerHeight:
-    var graph = document.getElementById('graph');
+    var graph = document.getElementById(renderTo);
     var width = window.innerWidth - margin.left - margin.right;
     var height = window.innerHeight * 0.5 - margin.top - margin.bottom;
 
@@ -42,7 +42,7 @@ angular.module('smartNews.services', ['ngCookies'])
     var x = d3.scaleTime().range([0, width]);
     var y = d3.scaleLinear().range([height, 0]);
 
-    var svg = d3.select('#graph')
+    var svg = d3.select(renderTo)
       .append('div')
       // .classed('svg-container', true) //container class to make it responsive
       .append('svg')
@@ -57,7 +57,7 @@ angular.module('smartNews.services', ['ngCookies'])
       .classed("svg-content-responsive", true);
 
     // div element for tooltip
-    var div = d3.select('#graph').append('div')
+    var div = d3.select(renderTo).append('div')
       .attr('class', 'tooltip')
       .style('opacity', 0);
 
