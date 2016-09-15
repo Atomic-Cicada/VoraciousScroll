@@ -94,13 +94,13 @@ angular.module('smartNews', [
         url: url
       })
       .then(
-        function(obj){
-          // console.log('obj:', obj);
+        function(obj) {
+          console.log('obj----->', obj);
           $state.go('main.results', {input: $scope.searchinput, articleReceived: false})
           .then(function() {
             window.objWin = obj;
             window.renderGraphWin = renderGraph.renderGraph;
-            renderGraph.renderGraph(obj);
+            renderGraph.renderGraph(obj, '#graph');
 
           });
         },

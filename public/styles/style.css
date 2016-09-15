@@ -80,7 +80,7 @@ h3 {
 #chart div {
   display: inline-block;
   background: #4285F4;
-  width: 20px;
+  width: 600px;
   margin-right: 3px;
 }
 
@@ -108,6 +108,11 @@ h3 {
 
 #home-right-div {
   padding-right: 10px;
+}
+
+#graphHomePage {
+  height: 400px;
+  width: 400px;
 }
 
 /* Trend Chart */
