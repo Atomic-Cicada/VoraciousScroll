@@ -3,14 +3,15 @@ var helper = require('sendgrid').mail;
 var fromEmail = new helper.Email('ollynov@gmail.com');
 var toEmail = new helper.Email('ollynov@gmail.com');
 var subject = 'FROM YOSH AGAIN';
-var sendGridKeys = require('../../keys.js').sendgrid;
-var sg = require('sendgrid')(sendGridKeys.SENDGRID_API_KEY);
+var content = new helper.Content('text/plain', "peh");
+var mail = new helper.Mail(fromEmail, subject, toEmail, content);
+
+// var sendGridKeys = require('../../keys.js').sendgrid;
+var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 
 // ****************** dynamic components ***********************
 
 // *******************************************************
-
-
 
 var request = sg.emptyRequest({
   method: 'POST',
@@ -19,9 +20,6 @@ var request = sg.emptyRequest({
 });
 
 exports.sendEmail = function(data) {
-
-  var content = new helper.Content('text/plain', data);
-  var mail = new helper.Mail(fromEmail, subject, toEmail, content);
 
   sg.API(request, function(error, response) {
     console.log(response.statusCode);

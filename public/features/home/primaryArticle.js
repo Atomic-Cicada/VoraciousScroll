@@ -56,18 +56,19 @@ angular.module('smartNews.home')
   // but this into a factory and into the services.js if it gets too big.
   $scope.sendEmail = function() {
     $http({
-      method: 'GET',
+      method: 'POST',
       url: '/sendEmail',
-      data: 'Hello THERE!'
+      data: { test: 'test' }
     }).then(function successCallback(response) {
-      console.log('ok great, success');
-      // this callback will be called asynchronously
-      // when the response is available
+      console.log('SUCCESS ', response);
+        // this callback will be called asynchronously
+        // when the response is available
     }, function errorCallback(response) {
-      console.log('your angular http is failing');
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
+      console.log('FAIL ', response);
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
     });
   };
+
 
 });
