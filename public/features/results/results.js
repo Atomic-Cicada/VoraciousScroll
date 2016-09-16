@@ -43,23 +43,26 @@ angular.module('smartNews.results', ['chart.js'])
       function(data) {
         $scope.articleReceived = true;
         $scope.articles = data.data.stories;
-        $http({
-          method: 'GET',
-          url: '/api/toneanalysis',
-          params: {text: data.data.stories[0].body}
-        }).then(function(data) {
-          var emotionArr = data.data.document_tone.tone_categories[0].tones;
-          var labelArr = [];
-          var scoreArr = [];
-          for (var i = 0; i < emotionArr.length; i++) {
-            labelArr[i] = emotionArr[i].tone_name;
-            scoreArr[i] = emotionArr[i].score;
-          }
-          $scope.labels = labelArr;
-          $scope.data = scoreArr;
-        }
-        );
-      },
+        data.data.stories.forEach(function(story) {
+          $http({
+            method: 'GET',
+            url: '/api/toneanalysis',
+            params: {text: story.body}
+          }).then(function(data) {
+            var emotionArr = data.data.document_tone.tone_categories[0].tones;
+            var labelArr = [];
+            var scoreArr = [];
+            for(var i = 0; i < emotionArr.length; i++) {
+              labelArr[i] = emotionArr[i].tone_name;
+              scoreArr[i] = emotionArr[i].score;
+            }
+            story.sentimentLabels = labelArr;
+            story.sentimentData = scoreArr;
+            console.log(story);
+          })
+
+        })
+        },
       function(err) {
         console.log('THERE WAS AN ERROR RECEIVING DATA FROM SEEARTICLE', err);
       }

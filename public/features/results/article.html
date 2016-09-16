@@ -23,7 +23,7 @@
       <img ng-src="{{ article.media[0].url }}" alt="" class="article-image">
       <div class='barchart'>
         <canvas id="base" class="chart-horizontal-bar"
-          chart-data="data" chart-labels="labels" >
+          chart-data="article.sentimentData" chart-labels="article.sentimentLabels" >
         </canvas>
       </div>
     </div>
