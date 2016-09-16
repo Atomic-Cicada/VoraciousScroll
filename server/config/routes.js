@@ -106,6 +106,6 @@ module.exports = function(app, express) {
   app.route('/api/toneanalysis')
     .get(function(req, res) {
       watsonTone.analyzeTone(req, res);
-    })
+    });
 
 };

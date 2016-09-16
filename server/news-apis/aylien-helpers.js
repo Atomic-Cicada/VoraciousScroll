@@ -24,10 +24,8 @@ var timelineData = function(input, res) {
   var opts = {
     'title': input,
     'language': ['en'],
-    // 'publishedAtStart': '2016-03-15T00:00:00Z',
     'publishedAtStart': 'NOW-175DAYS',
     'publishedAtEnd': 'NOW',
-    // 'period': '+1DAYS'
   };
 
   api.listTimeSeries(opts, function(err, data) {
@@ -44,7 +42,6 @@ var articleImport = function(input, res, start, end, limit) {
   limit = limit || 3;
   var opts = {
     'title': input,
-    // 'text': input,
     'language': ['en'],
     'sortBy': 'relevance',
     'publishedAtStart': start,

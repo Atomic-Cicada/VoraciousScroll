@@ -7,10 +7,6 @@ angular.module('smartNews')
     return !!isAuth();
   };
 
-  $scope.goToProfile = function() {
-
-  };
-
   $scope.logout = function() {
     $cookies.remove('authenticate');
     $location.url('/');
