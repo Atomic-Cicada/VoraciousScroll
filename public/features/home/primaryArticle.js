@@ -6,6 +6,7 @@ angular.module('smartNews.home')
   $scope.news = TopTrendsFactory.primaryArticle;
   $scope.articleReceived = $stateParams.articleReceived;
   $scope.selectedDate = renderGraph.selectedDate;
+  $scope.user = isAuth();
 
   $scope.isAuth = function() {
     $scope.user = isAuth();
@@ -55,10 +56,22 @@ angular.module('smartNews.home')
 
   // but this into a factory and into the services.js if it gets too big.
   $scope.sendEmail = function() {
+    var now = new Date();
+    var article = {
+      title: $scope.news[0].title,
+      author: $scope.news[0].author.name,
+      publishDate: $scope.news[0].publishedAt,
+      savedDate: now,
+      articleLink: $scope.news[0].links.permalink,
+      articleSource: $scope.news[0].source.name,
+      img: $scope.news[0].media[0].url,
+      body: $scope.news[0].body,
+    };
+
     $http({
       method: 'POST',
       url: '/sendEmail',
-      data: { "Article": "Tupac" }
+      data: { article: article, user: $scope.user }
     }).then(function successCallback(response) {
       console.log('SUCCESS ', response);
         // this callback will be called asynchronously
