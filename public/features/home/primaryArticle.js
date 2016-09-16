@@ -40,7 +40,6 @@ angular.module('smartNews.home')
       function(data) {
         $scope.articleReceived = true;
         $scope.articles = data.data.stories;
-        // DATA NEEDED IS IN SCOPE.NEWS
         $scope.news = $scope.articles;
       },
       function(err) {
@@ -52,5 +51,4 @@ angular.module('smartNews.home')
   $scope.$on('user:clickDate', function(event, data) {
     $scope.getArticle();
   });
-
 });
