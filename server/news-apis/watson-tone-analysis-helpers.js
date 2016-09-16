@@ -1,8 +1,8 @@
 var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
 var tone_analyzer = new ToneAnalyzerV3({
-  username: '54c0d796-0b27-49cf-8965-c84d276ac1ac',
-  password: 'RVA7DgJDKWoo',
+  username: process.env.WATSON_TONE_API_USERNAME,
+  password: process.env.WATSON_TONE_API_PASSWORD,
   version_date: '2016-05-19'
 });
 
@@ -14,7 +14,6 @@ var analyzeTone = function(req, res) {
         console.log(err);
       else{
         var result = JSON.stringify(tone, null, 2);
-        // console.log(result);
         res.status(200).send(result);
       }
   });
