@@ -68,6 +68,9 @@ angular.module('smartNews.results', ['chart.js'])
   // Render article
   $scope.getArticle();
   // Render new articles on graph click
+  $scope.$on('user:clickDate', function(event, data) {
+    $scope.getArticle();
+  });
 
 })
 .directive('resultarticle', function() {
