@@ -377,3 +377,8 @@ div.tooltip-articles {
 .search-history-remove {
   width: 10%;
 }
+
+.barchart {
+  width: 80%;
+  position: relative;
+}

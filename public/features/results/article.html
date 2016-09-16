@@ -21,7 +21,13 @@
   <div class="article-body article-body-preview">
     <div class="col-sm-4 article-preview-left">
       <img ng-src="{{ article.media[0].url }}" alt="" class="article-image">
+      <div class='barchart'>
+        <canvas id="base" class="chart-horizontal-bar"
+          chart-data="data" chart-labels="labels" >
+        </canvas>
+      </div>
     </div>
+
     <div class="col-sm-8 article-preview-right">
       <div>
         {{ article.body }}

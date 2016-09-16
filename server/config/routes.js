@@ -3,6 +3,7 @@ var routes = require('express').Router();
 var passport = require('./passport.js');
 var aylien = require('../news-apis/aylien-helpers.js');
 var googleTrends = require('../news-apis/google-trends-helpers.js');
+var watsonTone = require('../news-apis/watson-tone-analysis-helpers.js');
 var request = require('request');
 var db = require('./db.controller.js');
 var path = require('path');
@@ -100,5 +101,11 @@ module.exports = function(app, express) {
     console.error(err.stack);
     res.status(500).send('Something broke!');
   });
+
+  /************************ TONE ANALYSIS **********************************/
+  app.route('/api/toneanalysis')
+    .get(function(req, res) {
+      watsonTone.analyzeTone(req, res);
+    })
 
 };
