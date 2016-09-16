@@ -104,14 +104,11 @@ module.exports = function(app, express) {
     .get(function(req, res) {
       watsonTone.analyzeTone(req, res);
     });
-<<<<<<< d8e2bdaff2b0ce2ded2365652a99c33afc4d5132
-=======
 
 // Error handling: send log the error and send status 500. This handles one error.
   app.use(function(err, req, res, next) {
     console.error(err.stack);
     res.status(500).send('Something broke!');
   });
->>>>>>> Sending out a barebones email when button is clicked on user side
 
 };
