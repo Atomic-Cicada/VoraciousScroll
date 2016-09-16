@@ -1,4 +1,4 @@
-angular.module('smartNews.results', [])
+angular.module('smartNews.results', ['720kb.tooltips', 'chart.js'])
 
 .controller('ResultsCtrl', function($scope, $stateParams, $http, isAuth, saveArticle, renderGraph) {
 
@@ -43,6 +43,22 @@ angular.module('smartNews.results', [])
       function(data) {
         $scope.articleReceived = true;
         $scope.articles = data.data.stories;
+        $http({
+          method: 'GET',
+          url: '/api/toneanalysis',
+          params: {text: data.data.stories[0].body}
+        }).then(function(data) {
+            var emotionArr = data.data.document_tone.tone_categories[0].tones;
+            var labelArr = [];
+            var scoreArr = [];
+            for(var i = 0; i < emotionArr.length; i++) {
+              labelArr[i] = emotionArr[i].tone_name;
+              scoreArr[i] = emotionArr[i].score;
+            }
+            $scope.labels = labelArr;
+            $scope.data = scoreArr;
+          }
+        )
       },
       function(err) {
         console.log('THERE WAS AN ERROR RECEIVING DATA FROM SEEARTICLE', err);
