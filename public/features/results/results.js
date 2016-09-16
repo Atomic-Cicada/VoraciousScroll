@@ -1,4 +1,4 @@
-angular.module('smartNews.results', ['720kb.tooltips', 'chart.js'])
+angular.module('smartNews.results', ['chart.js'])
 
 .controller('ResultsCtrl', function($scope, $stateParams, $http, isAuth, saveArticle, renderGraph) {
 
