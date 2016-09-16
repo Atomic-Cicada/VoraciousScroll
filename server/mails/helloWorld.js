@@ -6,7 +6,7 @@ exports.sendEmail = function(data) {
   var fromEmail = new helper.Email('ollynov@gmail.com');
   var toEmail = new helper.Email('ollynov@gmail.com');
   var subject = 'FROM YOSH AGAIN';
-  var content = new helper.Content('text/plain', data.topic);
+  var content = new helper.Content('text/plain', data.user);
   var mail = new helper.Mail(fromEmail, subject, toEmail, content);
 
   // var sendGridKeys = require('../../keys.js').sendgrid;
