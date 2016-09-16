@@ -58,7 +58,7 @@ angular.module('smartNews.home')
     $http({
       method: 'POST',
       url: '/sendEmail',
-      data: { test: 'test' }
+      data: { "Article": "Tupac" }
     }).then(function successCallback(response) {
       console.log('SUCCESS ', response);
         // this callback will be called asynchronously

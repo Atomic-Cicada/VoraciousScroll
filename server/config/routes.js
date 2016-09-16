@@ -93,8 +93,7 @@ module.exports = function(app, express) {
   /************************ SEND EMAILS **********************************/
   app.route('/sendEmail')
     .post(function(req, res) {
-      console.log('receiving the get request on server side!! and req.body is ', req.body);
-      mail.sendEmail();
+      mail.sendEmail(req.body);
     });
 
 
