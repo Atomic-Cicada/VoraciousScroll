@@ -15,7 +15,6 @@ passport.use(new FacebookStrategy({
   profileFields: ['id', 'name', 'picture.type(large)', 'email', 'gender']
 },
   function(accessToken, refreshToken, profile, done) {
-    console.log("HERE IS PROFILE IN PASSPORT", profile);
     User.findOrCreateUser(profile, function(error, user) {
       if (error) {
         return done(error);
