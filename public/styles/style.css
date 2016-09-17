@@ -382,3 +382,18 @@ div.tooltip-articles {
   width: 80%;
   position: relative;
 }
+
+#graph {
+  /*height: 100%;
+  width: 100%;*/
+}
+
+.svg-chart {
+  min-height: 100px;
+  /*width: 100%;*/
+}
+
+a:focus, a:hover {
+  text-decoration:none;
+  color:inherit;
+}

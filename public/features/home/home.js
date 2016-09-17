@@ -1,4 +1,4 @@
-angular.module('smartNews.home', ['smartNews.services'])
+angular.module('smartNews.home', ['smartNews.services', 'smartNews.graphServices'])
 
 // Sub-Views
 .directive('primaryarticle', function() {
