@@ -63,6 +63,7 @@ angular.module('smartNews.services', ['ngCookies'])
 .factory('TopTrendsFactory', function($http, $sanitize) {
   var topTrends = [];
   var primaryArticle = [];
+  var getTopThree = [];
 
   var formattedTopic = function(topic) {
     return {
@@ -97,28 +98,44 @@ angular.module('smartNews.services', ['ngCookies'])
 
   var topTrendsGoogleTrends = function() {
     return $http({
-        method: 'GET',
-        url: '/api/news/topTrendsDetail'
-      })
-      .then(function(response) {
-        response.data.forEach(function(topic, index) {
-          if (index === 0) {
-            var title = sanitizeTitle(formattedTopic(topic).articleTitle);
-            getPrimaryArticle(title)
-              .then(function(article) {
-                primaryArticle.push(article.data.stories[0]);
-              });
-          }
-          topTrends.push(formattedTopic(topic));
-        });
+      method: 'GET',
+      url: '/api/news/topTrendsDetail'
+    })
+    .then(function(response) {
+      response.data.forEach(function(topic, index) {
+        if (index === 0) {
+          var title = sanitizeTitle(formattedTopic(topic).articleTitle);
+          getPrimaryArticle(title)
+            .then(function(article) {
+              primaryArticle.push(article.data.stories[0]);
+              getTopThree.push(article.data.stories[0]);
+            });
+        }
+        if (index === 1) {
+          var title = sanitizeTitle(formattedTopic(topic).articleTitle);
+          getPrimaryArticle(title)
+            .then(function(article) {
+              getTopThree.push(article.data.stories[0]);
+            });
+        }
+        if (index === 2) {
+          var title = sanitizeTitle(formattedTopic(topic).articleTitle);
+          getPrimaryArticle(title)
+            .then(function(article) {
+              getTopThree.push(article.data.stories[0]);
+            });
+        }
+        topTrends.push(formattedTopic(topic));
       });
+    });
   };
 
   topTrendsGoogleTrends();
-
+  console.log('TOP THREE IN SERVICES', getTopThree);
   return {
     topTrends: topTrends,
     primaryArticle: primaryArticle,
+    getTopThree: getTopThree,
     getPrimaryArticle: getPrimaryArticle,
     sanitizeTitle: sanitizeTitle,
     getTopTrends: topTrendsGoogleTrends

@@ -93,7 +93,6 @@ module.exports = function(app, express) {
   /************************ SEND EMAILS **********************************/
   app.route('/sendEmail')
     .post(function(req, res) {
-      mail.sendEmail(req.body);
       mail.sendDigest(req.body);
     });
 
@@ -103,11 +102,11 @@ module.exports = function(app, express) {
         if (error) {
           res.sendStatus(501);
         } else {
-          res.send("Successfully added your email. Expect some daily digest emails");
+          res.send("Successfully added your email.");
         }
       });
-      mail.sendEmail(req.body);
-      //mail.sendDigest(req.body);
+      mail.sendSuccessEmail(req.body);
+      mail.sendDigest(req.body);
     });
 
 
