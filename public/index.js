@@ -1,5 +1,3 @@
-// var cookies = require('angular-cookies');
-
 angular.module('smartNews', [
   'ui.router',
   'smartNews.profile',

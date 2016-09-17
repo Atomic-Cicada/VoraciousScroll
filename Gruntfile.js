@@ -21,12 +21,15 @@ module.exports = function(grunt) {
         separator: ';',
       },
       dist: {
-        src: ['public/bundle.js',
+        src: [
         'public/index.js',
-        'public/home/*.js',
-        'public/nav/*.js',
-        'public/results/*.js',
-        'public/services/*.js'
+        'public/services/services.js',
+        'public/features/results/results.js',
+        'public/features/home/home.js',
+        'public/features/home/trends.js',
+        'public/features/home/primaryArticle.js',
+        'public/features/profile/profile.js',
+        'public/features/nav/nav.js'
         ],
         dest: 'public/dist/built.js',
       },
