@@ -201,7 +201,7 @@ li.trend-listing {
 .article-preview-right {
   position: relative;
   height: 100%;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 /* Search Bar */
@@ -379,7 +379,7 @@ div.tooltip-articles {
 }
 
 .barchart {
-  width: 80%;
+  width: 70%;
   position: relative;
 }
 
@@ -397,3 +397,10 @@ a:focus, a:hover {
   text-decoration:none;
   color:inherit;
 }
+
+.articleLeft {
+  display:flex;
+}
+/*.col-sm-4 {
+  height: inherit;
+}*/
