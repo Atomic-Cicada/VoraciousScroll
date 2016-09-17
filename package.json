@@ -4,7 +4,7 @@
   "description": "news app",
   "main": "./server/server.js",
   "scripts": {
-    "bundle": "browserify server/modules.js -o public/bundle.js",
+    "bundle": "browserify server/modules.js -o public/dist/bundle.js",
     "build": "grunt build",
     "test": "grunt test",
     "start": "nodemon"
