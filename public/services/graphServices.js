@@ -29,7 +29,10 @@ angular.module('smartNews.graphServices', [])
       return d.value;
     })]).range([height, 0]);
 
-    var svg = d3.select(renderTo)
+    var svg = d3.select(renderTo);
+    svg.selectAll('*').remove();
+
+    svg = d3.select(renderTo)
       .append('svg')
       .classed('svg-chart', true)
       .attr('viewBox', '0 0 ' + (width) + ' ' + 200)

@@ -5,6 +5,7 @@ require('angular-cookies');
 require('angular-ui-bootstrap');
 require('angular-chart.js');
 require('chart.js');
+require('./styles/style.css');
 require('./index.js');
 require('./services/services.js');
 require('./features/results/results.js');
