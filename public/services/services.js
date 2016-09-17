@@ -8,7 +8,8 @@ angular.module('smartNews.services', ['ngCookies'])
       return {
         firstname: parsedAuth.firstname,
         lastname: parsedAuth.lastname,
-        picture: parsedAuth.picture
+        picture: parsedAuth.picture,
+        email: parsedAuth.email
 
       };
     }

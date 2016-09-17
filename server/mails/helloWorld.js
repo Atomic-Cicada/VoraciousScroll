@@ -4,12 +4,10 @@
 exports.sendEmail = function(data) {
   var helper = require('sendgrid').mail;
   var fromEmail = new helper.Email('ollynov@gmail.com');
-  var toEmail = new helper.Email('ollynov@gmail.com');
-  var subject = 'FROM YOSH AGAIN';
-  var content = new helper.Content('text/plain', data.user.firstname);
+  var toEmail = new helper.Email(data.email);
+  var subject = 'You are subscribed to News Juice';
+  var content = new helper.Content('text/plain', data.firstname + ' you are now subscribed to the famous News Juice daily trends digest email');
   var mail = new helper.Mail(fromEmail, subject, toEmail, content);
-
-  // var sendGridKeys = require('../../keys.js').sendgrid;
   var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 
   // ****************** dynamic components ***********************
@@ -22,8 +20,6 @@ exports.sendEmail = function(data) {
     body: mail.toJSON(),
   });
   sg.API(request, function(error, response) {
-    console.log(response.statusCode);
     console.log('here is our response ===>', response.body);
-    console.log(response.headers);
   });
 };

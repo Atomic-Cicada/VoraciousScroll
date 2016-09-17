@@ -95,7 +95,7 @@ module.exports = function(app, express) {
     .post(function(req, res) {
       //console.log('here is title ', req.body.article.title);
       console.log('here is USER =====>>>>>', req.body.user);
-      //mail.sendEmail(req.body);
+      mail.sendEmail(req.body.user);
     });
 
   app.route('/saveEmail')
