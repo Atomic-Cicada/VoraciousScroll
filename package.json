@@ -4,9 +4,10 @@
   "description": "news app",
   "main": "./server/server.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack --progress --colors",
+    "dev": "./node_modules/.bin/webpack --progress --colors --watch -d",
+    "build": "./node_modules/.bin/webpack",
     "start": "nodemon",
-    "postinstall": "npm run build"
+    "postinstall": "npm run dev"
   },
   "repository": {
     "type": "git",
