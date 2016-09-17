@@ -11,7 +11,7 @@ var User = require('../db/user.schema.js');
 passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_APP_ID,
   clientSecret: process.env.FACEBOOK_APP_SECRET,
-  callbackURL: 'http://localhost:3000/auth/facebook/callback',
+  callbackURL: '/auth/facebook/callback',
   profileFields: ['id', 'name', 'picture.type(large)', 'email', 'gender']
 },
   function(accessToken, refreshToken, profile, done) {
