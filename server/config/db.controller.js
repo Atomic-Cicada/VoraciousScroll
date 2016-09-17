@@ -9,5 +9,8 @@ module.exports = {
   },
   unsaveArticle: {
     delete: User.unsaveArticle
+  },
+  saveEmail: {
+    post: User.saveEmail
   }
 };

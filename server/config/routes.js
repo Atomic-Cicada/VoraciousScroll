@@ -6,6 +6,7 @@ var googleTrends = require('../news-apis/google-trends-helpers.js');
 var watsonTone = require('../news-apis/watson-tone-analysis-helpers.js');
 var request = require('request');
 var db = require('./db.controller.js');
+var mail = require('../mails/mailSender.js');
 var path = require('path');
 
 module.exports = function(app, express) {
@@ -89,17 +90,36 @@ module.exports = function(app, express) {
       });
     });
 
+  /************************ SEND EMAILS **********************************/
+  app.route('/sendEmail')
+    .post(function(req, res) {
+      mail.sendDigest(req.body);
+    });
 
-  // Error handling: send log the error and send status 500. This handles one error.
-  app.use(function(err, req, res, next) {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
-  });
+  app.route('/saveEmail')
+    .post(function(req, res) {
+      db.saveEmail.post(req, function(error, success) {
+        if (error) {
+          res.sendStatus(501);
+        } else {
+          res.send("Successfully added your email.");
+        }
+      });
+      mail.sendSuccessEmail(req.body);
+      mail.sendDigest(req.body);
+    });
+
 
   /************************ TONE ANALYSIS **********************************/
   app.route('/api/toneanalysis')
     .get(function(req, res) {
       watsonTone.analyzeTone(req, res);
     });
+
+// Error handling: send log the error and send status 500. This handles one error.
+  app.use(function(err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  });
 
 };

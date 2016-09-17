@@ -6,7 +6,8 @@ var fbProfile = function (fbProfile) {
     firstname: fbProfile.name.givenName,
     lastname: fbProfile.name.familyName,
     picture: fbProfile.photos[0].value,
-    gender: fbProfile.gender
+    gender: fbProfile.gender,
+    email: fbProfile.emails
   };
 };
 
@@ -23,6 +24,7 @@ var userSchema = new mongoose.Schema({
   lastname: String,
   picture: String,
   gender: String,
+  email: String,
   articles: [{
     title: String,
     author: String,
@@ -90,6 +92,22 @@ User.getArticles = function(req, callback) {
       }
     });
   }
+};
+
+User.saveEmail = function(req, callback) {
+  User.findOne({_facebookUniqueID: getUserObj(req)._facebookUniqueID}, function (error, user) {
+    if (error) {
+      return handleError(error);
+    } else {
+      user.email = req.body.email;
+      user.save(function (error, updatedUser) {
+        if (error) {
+          return handleError(error);
+          res.send(updatedUser);
+        }
+      });
+    }
+  });
 };
 
 

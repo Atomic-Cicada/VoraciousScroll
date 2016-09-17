@@ -23,7 +23,8 @@ passport.use(new FacebookStrategy({
           _facebookUniqueID: user._facebookUniqueID,
           firstname: user.firstname,
           lastname: user.lastname,
-          picture: user.picture
+          picture: user.picture,
+          email: user.email
         });
       }
     });

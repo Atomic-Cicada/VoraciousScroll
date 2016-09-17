@@ -9,6 +9,8 @@ angular.module('smartNews.services', ['ngCookies'])
         firstname: parsedAuth.firstname,
         lastname: parsedAuth.lastname,
         picture: parsedAuth.picture,
+        email: parsedAuth.email
+
       };
     }
     return null;
@@ -18,13 +20,13 @@ angular.module('smartNews.services', ['ngCookies'])
 .factory('saveArticle', function($http) {
   return function(article) {
     $http({
-        method: 'POST',
-        data: article,
-        url: '/article'
-      })
-      .then(function(data) {
-        console.log('success posting', data);
-      });
+      method: 'POST',
+      data: article,
+      url: '/article'
+    })
+    .then(function(data) {
+      console.log('success posting', data);
+    });
   };
 })
 
@@ -32,35 +34,36 @@ angular.module('smartNews.services', ['ngCookies'])
   return function(article, cb) {
     var url = '/unsavearticle/' + article._id;
     $http({
-        method: 'DELETE',
-        url: url
-      })
-      .then(function(data) {
-        console.log('success deleting', data);
-        cb();
-      });
+      method: 'DELETE',
+      url: url
+    })
+    .then(function(data) {
+      console.log('success deleting', data);
+      cb();
+    });
   };
 })
 
 .factory('getSavedSearches', function($http) {
   return function(cb) {
     $http({
-        method: 'GET',
-        url: '/profile'
-      })
-      .then(function(data) {
-        data.data.forEach(function(e) {
-          e.formattedPublishDate = moment(e.publishDate).format('MMM DD YYYY');
-          e.formattedSavedDate = moment(e.savedDate).format('MMM DD YYYY');
-        });
-        cb(data.data);
+      method: 'GET',
+      url: '/profile'
+    })
+    .then(function(data) {
+      data.data.forEach(function(e) {
+        e.formattedPublishDate = moment(e.publishDate).format('MMM DD YYYY');
+        e.formattedSavedDate = moment(e.savedDate).format('MMM DD YYYY');
       });
+      cb(data.data);
+    });
   };
 })
 
 .factory('TopTrendsFactory', function($http, $sanitize) {
   var topTrends = [];
   var primaryArticle = [];
+  var getTopThree = [];
 
   var formattedTopic = function(topic) {
     return {
@@ -79,12 +82,12 @@ angular.module('smartNews.services', ['ngCookies'])
 
     var url = '/seearticle?input=' + topic + '&start=' + publishStart + '&end=' + publishEnd + '&limit=1';
     return $http({
-        method: 'GET',
-        url: url
-      })
-      .then(function(article) {
-        return article;
-      });
+      method: 'GET',
+      url: url
+    })
+    .then(function(article) {
+      return article;
+    });
   };
 
   var sanitizeTitle = function(title) {
@@ -95,28 +98,43 @@ angular.module('smartNews.services', ['ngCookies'])
 
   var topTrendsGoogleTrends = function() {
     return $http({
-        method: 'GET',
-        url: '/api/news/topTrendsDetail'
-      })
-      .then(function(response) {
-        response.data.forEach(function(topic, index) {
-          if (index === 0) {
-            var title = sanitizeTitle(formattedTopic(topic).articleTitle);
-            getPrimaryArticle(title)
-              .then(function(article) {
-                primaryArticle.push(article.data.stories[0]);
-              });
-          }
-          topTrends.push(formattedTopic(topic));
-        });
+      method: 'GET',
+      url: '/api/news/topTrendsDetail'
+    })
+    .then(function(response) {
+      response.data.forEach(function(topic, index) {
+        if (index === 0) {
+          var title = sanitizeTitle(formattedTopic(topic).articleTitle);
+          getPrimaryArticle(title)
+            .then(function(article) {
+              primaryArticle.push(article.data.stories[0]);
+              getTopThree.push(article.data.stories[0]);
+            });
+        }
+        if (index === 1) {
+          var title = sanitizeTitle(formattedTopic(topic).articleTitle);
+          getPrimaryArticle(title)
+            .then(function(article) {
+              getTopThree.push(article.data.stories[0]);
+            });
+        }
+        if (index === 2) {
+          var title = sanitizeTitle(formattedTopic(topic).articleTitle);
+          getPrimaryArticle(title)
+            .then(function(article) {
+              getTopThree.push(article.data.stories[0]);
+            });
+        }
+        topTrends.push(formattedTopic(topic));
       });
+    });
   };
 
   topTrendsGoogleTrends();
-
   return {
     topTrends: topTrends,
     primaryArticle: primaryArticle,
+    getTopThree: getTopThree,
     getPrimaryArticle: getPrimaryArticle,
     sanitizeTitle: sanitizeTitle,
     getTopTrends: topTrendsGoogleTrends
