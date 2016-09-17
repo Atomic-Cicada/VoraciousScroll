@@ -20,13 +20,13 @@ angular.module('smartNews.services', ['ngCookies'])
 .factory('saveArticle', function($http) {
   return function(article) {
     $http({
-        method: 'POST',
-        data: article,
-        url: '/article'
-      })
-      .then(function(data) {
-        console.log('success posting', data);
-      });
+      method: 'POST',
+      data: article,
+      url: '/article'
+    })
+    .then(function(data) {
+      console.log('success posting', data);
+    });
   };
 })
 
@@ -34,13 +34,13 @@ angular.module('smartNews.services', ['ngCookies'])
   return function(article, cb) {
     var url = '/unsavearticle/' + article._id;
     $http({
-        method: 'DELETE',
-        url: url
-      })
-      .then(function(data) {
-        console.log('success deleting', data);
-        cb();
-      });
+      method: 'DELETE',
+      url: url
+    })
+    .then(function(data) {
+      console.log('success deleting', data);
+      cb();
+    });
   };
 })
 
