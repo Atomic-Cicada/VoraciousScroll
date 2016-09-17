@@ -93,9 +93,9 @@ module.exports = function(app, express) {
   /************************ SEND EMAILS **********************************/
   app.route('/sendEmail')
     .post(function(req, res) {
-      console.log('here is title ', req.body.article.title);
-      console.log('here is user ', req.body.user.firstname);
-      mail.sendEmail(req.body);
+      //console.log('here is title ', req.body.article.title);
+      console.log('here is USER =====>>>>>', req.body.user);
+      //mail.sendEmail(req.body);
     });
 
 

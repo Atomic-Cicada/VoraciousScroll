@@ -6,7 +6,8 @@ var fbProfile = function (fbProfile) {
     firstname: fbProfile.name.givenName,
     lastname: fbProfile.name.familyName,
     picture: fbProfile.photos[0].value,
-    gender: fbProfile.gender
+    gender: fbProfile.gender,
+    email: fbProfile.emails
   };
 };
 
@@ -23,6 +24,7 @@ var userSchema = new mongoose.Schema({
   lastname: String,
   picture: String,
   gender: String,
+  email: String,
   articles: [{
     title: String,
     author: String,
@@ -43,6 +45,7 @@ User.findOrCreateUser = function(profile, callback) {
       console.log('ERROR: ', error);
       callback(error);
     } else if (!user) {
+      console.log('PROFILE IS THIS', profile);
       User.create(fbProfile(profile), function(error, user) {
         if (error) {
           callback(error);
