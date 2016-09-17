@@ -22,11 +22,8 @@
     "css-loader": "^0.25.0",
     "eslint": "^3.4.0",
     "eslint-config-hackreactor": "hackreactor-labs/eslint-config-hackreactor",
-    "grunt": "^1.0.1",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-eslint": "^19.0.0",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2"
   },
   "dependencies": {
     "angular": "^1.5.8",
