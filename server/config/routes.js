@@ -6,7 +6,7 @@ var googleTrends = require('../news-apis/google-trends-helpers.js');
 var watsonTone = require('../news-apis/watson-tone-analysis-helpers.js');
 var request = require('request');
 var db = require('./db.controller.js');
-var mail = require('../mails/helloWorld.js');
+var mail = require('../mails/mailSender.js');
 var path = require('path');
 
 module.exports = function(app, express) {
