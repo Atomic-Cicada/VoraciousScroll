@@ -17,5 +17,4 @@ npm-debug.log
 # Api Keys
 keys.js
 
-public/bundle.js
-public/dist/built.js
+public/dist/

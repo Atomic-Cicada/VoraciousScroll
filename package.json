@@ -4,9 +4,7 @@
   "description": "news app",
   "main": "./server/server.js",
   "scripts": {
-    "bundle": "browserify server/modules.js -o public/bundle.js",
-    "build": "grunt build",
-    "test": "grunt test",
+    "build": "./node_modules/.bin/webpack --progress --colors --watch",
     "start": "nodemon"
   },
   "repository": {
@@ -21,12 +19,14 @@
   "homepage": "https://github.com/VoraciousScroll/VoraciousScroll#readme",
   "devDependencies": {
     "browserify": "^13.1.0",
+    "css-loader": "^0.25.0",
     "eslint": "^3.4.0",
     "eslint-config-hackreactor": "hackreactor-labs/eslint-config-hackreactor",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-concat": "^1.0.1",
-    "grunt-eslint": "^19.0.0"
+    "grunt-eslint": "^19.0.0",
+    "style-loader": "^0.13.1"
   },
   "dependencies": {
     "angular": "^1.5.8",
