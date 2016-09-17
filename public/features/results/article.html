@@ -1,42 +1,45 @@
-<div class="container-fluid article-preview" ng-repeat="article in articles">
+<div infinite-scroll='nextPage()' infinite-scroll-disabled='results.busy' infinite-scroll-distance='0'>
+  <div class="container-fluid article-preview" ng-repeat="article in articles">
 
-  <h2 class="article-title">
-    <a ng-href="{{ article.links.permalink }}"> {{ article.title }} </a>
-    <span class="save-button" ng-show="isAuth()">
-      <button ng-click="clickSave(article)" class="btn btn-primary">
-        Save Article
-      </button>
-    </span>
-  </h2>
+    <h2 class="article-title">
+      <a ng-href="{{ article.links.permalink }}"> {{ article.title }} </a>
+      <span class="save-button" ng-show="isAuth()">
+        <button ng-click="clickSave(article)" class="btn btn-primary">
+          Save Article
+        </button>
+      </span>
+    </h2>
 
-  <div class="article-subheading">
-    <span class="article-source">
-      {{ article.source.name }}
-    </span>
-    <span class="article-date">
-      {{ article.publishedAt | date:'medium' }}
-    </span>
-  </div>
-
-  <div class="article-body article-body-preview">
-    <div class="col-sm-4 article-preview-left articleLeft">
-      <div>
-        <img ng-src="{{ article.media[0].url }}" alt="" class="article-image">
-      </div>
-      <div class='barchart'>
-        <canvas id="base" class="chart-horizontal-bar"
-          chart-data="article.sentimentData" chart-labels="article.sentimentLabels" >
-        </canvas>
-      </div>
+    <div class="article-subheading">
+      <span class="article-source">
+        {{ article.source.name }}
+      </span>
+      <span class="article-date">
+        {{ article.publishedAt | date:'medium' }}
+      </span>
     </div>
 
-    <div class="col-sm-8 article-preview-right">
-      <div>
-        {{ article.body }}
+    <div class="article-body article-body-preview">
+      <div class="col-sm-4 article-preview-left articleLeft">
+        <div>
+          <img ng-src="{{ article.media[0].url }}" alt="" class="article-image">
+        </div>
+        <div class='barchart'>
+          <canvas id="base" class="chart-horizontal-bar"
+            chart-data="article.sentimentData" chart-labels="article.sentimentLabels" >
+          </canvas>
+        </div>
       </div>
-      <div class="article-author">
-        <br />{{ article.author.name }}
+
+      <div class="col-sm-8 article-preview-right">
+        <div>
+          {{ article.body }}
+        </div>
+        <div class="article-author">
+          <br />{{ article.author.name }}
+        </div>
       </div>
     </div>
   </div>
+  <div ng-show='resultsBusy'>Loading data...</div>
 </div>
