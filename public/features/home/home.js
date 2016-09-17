@@ -16,5 +16,5 @@ angular.module('smartNews.home', ['smartNews.services', 'smartNews.graphServices
 
 // Home Controller
 .controller('HomeCtrl', function($scope) {
-  $scope.test = 'Home View';
+  $scope.topicName = 'Home View';
 });
