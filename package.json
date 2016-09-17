@@ -5,8 +5,8 @@
   "main": "./server/server.js",
   "scripts": {
     "build": "./node_modules/.bin/webpack --progress --colors --watch",
-    "dev": "./node_modules/.bin/webpack -d --progress --colors --watch",
-    "start": "nodemon"
+    "start": "nodemon",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
