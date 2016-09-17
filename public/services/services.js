@@ -47,16 +47,16 @@ angular.module('smartNews.services', ['ngCookies'])
 .factory('getSavedSearches', function($http) {
   return function(cb) {
     $http({
-        method: 'GET',
-        url: '/profile'
-      })
-      .then(function(data) {
-        data.data.forEach(function(e) {
-          e.formattedPublishDate = moment(e.publishDate).format('MMM DD YYYY');
-          e.formattedSavedDate = moment(e.savedDate).format('MMM DD YYYY');
-        });
-        cb(data.data);
+      method: 'GET',
+      url: '/profile'
+    })
+    .then(function(data) {
+      data.data.forEach(function(e) {
+        e.formattedPublishDate = moment(e.publishDate).format('MMM DD YYYY');
+        e.formattedSavedDate = moment(e.savedDate).format('MMM DD YYYY');
       });
+      cb(data.data);
+    });
   };
 })
 
@@ -82,12 +82,12 @@ angular.module('smartNews.services', ['ngCookies'])
 
     var url = '/seearticle?input=' + topic + '&start=' + publishStart + '&end=' + publishEnd + '&limit=1';
     return $http({
-        method: 'GET',
-        url: url
-      })
-      .then(function(article) {
-        return article;
-      });
+      method: 'GET',
+      url: url
+    })
+    .then(function(article) {
+      return article;
+    });
   };
 
   var sanitizeTitle = function(title) {
@@ -131,7 +131,6 @@ angular.module('smartNews.services', ['ngCookies'])
   };
 
   topTrendsGoogleTrends();
-  console.log('TOP THREE IN SERVICES', getTopThree);
   return {
     topTrends: topTrends,
     primaryArticle: primaryArticle,

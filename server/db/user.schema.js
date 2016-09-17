@@ -40,13 +40,11 @@ var userSchema = new mongoose.Schema({
 var User = mongoose.model('User', userSchema);
 
 User.findOrCreateUser = function(profile, callback) {
-  console.log("OK LETS LOG YOU IN");
   User.findOne({_facebookUniqueID: profile.id}, function (error, user) {
     if (error) {
       console.log('ERROR: ', error);
       callback(error);
     } else if (!user) {
-      console.log('PROFILE IS THIS', profile);
       User.create(fbProfile(profile), function(error, user) {
         if (error) {
           callback(error);
@@ -55,7 +53,6 @@ User.findOrCreateUser = function(profile, callback) {
         }
       });
     } else {
-      console.log('ok the user is ', user);
       callback(null, user);
     }
   });

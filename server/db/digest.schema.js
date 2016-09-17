@@ -12,9 +12,5 @@ var digestSchema = new mongoose.Schema({
 
 var Digest = mongoose.model('Digest', digestSchema);
 
-// Digest.updateInterests = function() {
-
-// }
-
 
 module.exports = Digest;

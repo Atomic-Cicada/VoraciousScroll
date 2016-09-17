@@ -5,7 +5,6 @@ angular.module('smartNews.home')
 
   $scope.news = TopTrendsFactory.primaryArticle;
   $scope.getTopThree = TopTrendsFactory.getTopThree;
-  // scope.newsThree = TopTrendsFactory.primaryArticle;
   $scope.articleReceived = $stateParams.articleReceived;
   $scope.selectedDate = renderGraph.selectedDate;
   $scope.user = isAuth();
