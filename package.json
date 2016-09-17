@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/VoraciousScroll/VoraciousScroll#readme",
   "devDependencies": {
+    "browserify": "^13.1.0",
     "eslint": "^3.4.0",
     "eslint-config-hackreactor": "hackreactor-labs/eslint-config-hackreactor",
     "grunt": "^1.0.1",

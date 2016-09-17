@@ -5,6 +5,7 @@ angular.module('smartNews', [
   'smartNews.results',
   'ngCookies',
   'smartNews.services',
+  'smartNews.graphServices',
   'ngSanitize',
   'ui.bootstrap'
 ])

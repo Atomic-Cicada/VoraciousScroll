@@ -29,7 +29,8 @@ module.exports = function(grunt) {
         'public/features/home/trends.js',
         'public/features/home/primaryArticle.js',
         'public/features/profile/profile.js',
-        'public/features/nav/nav.js'
+        'public/features/nav/nav.js',
+        'public/services/graphServices.js',
         ],
         dest: 'public/dist/built.js',
       },
