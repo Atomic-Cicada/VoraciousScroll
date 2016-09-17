@@ -98,6 +98,18 @@ module.exports = function(app, express) {
       //mail.sendEmail(req.body);
     });
 
+  app.route('/saveEmail')
+    .post(function(req, res) {
+      console.log('here is EMAIL =====>>>>>', req.body);
+      db.saveEmail.post(req, function(error, success) {
+        if (error) {
+          res.sendStatus(501);
+        } else {
+          res.send("Successfully added your email. Expect some daily digest emails");
+        }
+      });
+    });
+
 
   /************************ TONE ANALYSIS **********************************/
   app.route('/api/toneanalysis')
