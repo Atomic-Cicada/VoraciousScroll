@@ -19,8 +19,10 @@
   </div>
 
   <div class="article-body article-body-preview">
-    <div class="col-sm-4 article-preview-left">
-      <img ng-src="{{ article.media[0].url }}" alt="" class="article-image">
+    <div class="col-sm-4 article-preview-left articleLeft">
+      <div>
+        <img ng-src="{{ article.media[0].url }}" alt="" class="article-image">
+      </div>
       <div class='barchart'>
         <canvas id="base" class="chart-horizontal-bar"
           chart-data="article.sentimentData" chart-labels="article.sentimentLabels" >
