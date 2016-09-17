@@ -5,7 +5,8 @@ var digestSchema = new mongoose.Schema({
   firstname: String,
   lastname: String,
   email: String,
-  interests: String
+  interests: Array,
+  subscriptions: Array
 
 });
 

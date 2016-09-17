@@ -93,14 +93,12 @@ module.exports = function(app, express) {
   /************************ SEND EMAILS **********************************/
   app.route('/sendEmail')
     .post(function(req, res) {
-      //console.log('here is title ', req.body.article.title);
-      console.log('here is USER =====>>>>>', req.body.user);
-      mail.sendEmail(req.body.user);
+      mail.sendEmail(req.body);
+      mail.sendDigest(req.body);
     });
 
   app.route('/saveEmail')
     .post(function(req, res) {
-      console.log('here is EMAIL =====>>>>>', req.body);
       db.saveEmail.post(req, function(error, success) {
         if (error) {
           res.sendStatus(501);
@@ -108,6 +106,8 @@ module.exports = function(app, express) {
           res.send("Successfully added your email. Expect some daily digest emails");
         }
       });
+      mail.sendEmail(req.body);
+      //mail.sendDigest(req.body);
     });
 
 
