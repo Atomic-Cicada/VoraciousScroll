@@ -18,3 +18,4 @@ npm-debug.log
 keys.js
 
 public/dist/
+public/bundle.js
