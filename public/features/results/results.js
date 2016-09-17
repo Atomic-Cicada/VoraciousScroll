@@ -77,6 +77,7 @@ angular.module('smartNews.results', ['chart.js'])
   // Render new articles on graph click
   $scope.$on('user:clickDate', function(event, data) {
     console.log('click');
+    $scope.articles=[];
     $scope.getArticle();
   });
 
