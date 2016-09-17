@@ -1,13 +1,3 @@
-// TO-DOs
-
-// 1: Make it so timeline width fills out the width of parent div.
-// see: http://jsfiddle.net/shawnbot/BJLe6/
-// use document.getElementById('graph') instead of $('#graph');
-
-// Timeline height can be a fixed px height.
-
-// 2: Set up graph to start from the middle of y-axes rather than bottom
-
 angular.module('smartNews.services', ['ngCookies'])
 
 .factory('renderGraph', function($rootScope) {
@@ -19,12 +9,6 @@ angular.module('smartNews.services', ['ngCookies'])
   var renderGraph = function(dataObj, renderTo) {
 
     data = dataObj.data.timeSeries;
-
-    //clear out contents of graph prior to rendering, to prevent stacking graphs
-    // using 'window' is necessary here due to lexical scope.
-    // if (window.graph.innerHTML !== undefined) {
-    //   window.graph.innerHTML = '';
-    // }
 
     // set graph dimensions and margins
     var margin = { top: 0, right: 50, bottom: 50, left: 50 };
@@ -47,11 +31,8 @@ angular.module('smartNews.services', ['ngCookies'])
 
     svg = d3.select(renderTo)
       .append('div')
-      // .classed('svg-container', true) //container class to make it responsive
       .append('svg')
       // responsive SVG needs these two attr's and an absence of height and width attr's
-      // .attr('preserveAspectRatio', 'xMinYMin meet') // preserves aspect ratio by 'fitting' the viewbox to the viewport, rather than filling
-      // .attr('viewBox', '0 0 ' + (window.innerWidth) + ' ' + (window.innerHeight))
       .attr('viewBox', '0 0 ' + (window.innerWidth) + ' ' + 400 )
       // append group element
       .append('g')
