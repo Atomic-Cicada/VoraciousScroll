@@ -28,7 +28,7 @@ module.exports = function(app, express) {
   app.use(passport.session());
 
   app.get('/enter', function(req, res) {
-    res.sendFile(path.join(__dirname + '/../../public/layout.html'));
+    res.sendFile(path.join(__dirname + '/../../public/index.html'));
   });
 
   app.get('/auth/facebook',
