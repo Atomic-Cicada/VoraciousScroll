@@ -37,7 +37,7 @@ var timelineData = function(input, res) {
   });
 };
 
-var articleImport = function(input, res, start, end, limit) {
+var articleImport = function(input, res, start, end, limit, nextPageCursor) {
   limit = limit || 3;
   var opts = {
     'title': input,
@@ -45,13 +45,14 @@ var articleImport = function(input, res, start, end, limit) {
     'sortBy': 'relevance',
     'publishedAtStart': start,
     'publishedAtEnd': end,
+    'cursor': nextPageCursor,
     'perPage': limit,
   };
-
   api.listStories(opts, function(err, data) {
     if (err) {
       console.log('<------ERROR--------->', err);
     } else {
+      opts.cursors = data.nextPageCursor;
       res.send(data);
     }
   });
