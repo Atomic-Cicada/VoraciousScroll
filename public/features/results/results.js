@@ -34,7 +34,7 @@ angular.module('smartNews.results', ['chart.js'])
     saveArticle(article);
   };
 
-  $scope.getArticle = function(limit) {
+  $scope.getArticle = function() {
     var input = $stateParams.input;
     var publishStart = $scope.selectedDate.startDate;
     var publishEnd = $scope.selectedDate.endDate;
