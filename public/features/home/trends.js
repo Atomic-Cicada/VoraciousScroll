@@ -2,6 +2,7 @@ angular.module('smartNews.home')
 
 .controller('TopTrendsCtrl', function($scope, $http, TopTrendsFactory, renderGraph) {
   var sanitizeTitle = TopTrendsFactory.sanitizeTitle;
+  var getTopTrendsDetails = TopTrendsFactory.topTrendsGoogleTrends;
   $scope.topTrends = TopTrendsFactory.topTrends;
 
   $scope.selectArticle = function (topic, topicName) {

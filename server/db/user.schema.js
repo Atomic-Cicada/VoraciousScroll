@@ -86,7 +86,6 @@ User.getArticles = function(req, callback) {
       if (error) {
         callback(error);
       } else {
-        // console.log(user, 'this is the user');
         callback(null, user.articles);
       }
     });

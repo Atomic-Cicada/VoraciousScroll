@@ -18,7 +18,6 @@ module.exports = function(app, express) {
         if (err) {
           console.log('there was an error requesting via express', err);
         } else {
-          console.log('<<<<<<<<<<- congrats!!!');
           res.status(200).send(body);
         }
       });
@@ -29,7 +28,6 @@ module.exports = function(app, express) {
   app.use(passport.session());
 
   app.get('/enter', function(req, res) {
-    console.log(__dirname);
     res.sendFile(path.join(__dirname + '/../../public/layout.html'));
   });
 
@@ -41,18 +39,14 @@ module.exports = function(app, express) {
       function(req, res) {
       // Successful authentication, redirect home.
         res.cookie('authenticate', req.session.passport);
-        // console.log('cookie being set', req.session.passport)
         res.redirect('/enter');
       });
 
   app.route('/results/:input')
     .get(function(req, res) {
-      console.log('Received get on /results/:input from app.route on routes.js');
       aylien.timelineData(req.params.input, res);
     });
 
-
-  // http://localhost/3000/see-article?input=obama&start=[startdate]&end=[enddate]
   app.route('/seearticle')
     .get(function(req, res) {
       aylien.articleImport(req.query.input, res, req.query.start, req.query.end, req.query.limit);

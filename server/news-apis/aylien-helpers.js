@@ -32,7 +32,6 @@ var timelineData = function(input, res) {
     if (err) {
       console.log('<------ERROR--------->', err);
     } else {
-      console.log('API called successfully. Returned data: ' + data);
       res.send(data);
     }
   });
@@ -53,7 +52,6 @@ var articleImport = function(input, res, start, end, limit) {
     if (err) {
       console.log('<------ERROR--------->', err);
     } else {
-      console.log('API called successfully. Returned data: ' + data);
       res.send(data);
     }
   });

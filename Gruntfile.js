@@ -13,12 +13,30 @@ module.exports = function(grunt) {
         './*.js',
         'spec/**/*.js',
         'server/**/*.js'
-              ]
+      ]
+    },
+
+    concat: {
+      options: {
+        separator: ';',
+      },
+      dist: {
+        src: ['public/bundle.js',
+        'public/index.js',
+        'public/home/*.js',
+        'public/nav/*.js',
+        'public/results/*.js',
+        'public/services/*.js'
+        ],
+        dest: 'public/dist/built.js',
+      },
     },
 
   });
 
   grunt.loadNpmTasks('grunt-eslint');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+
 
   ////////////////////////////////////////////////////
   // Main grunt tasks
@@ -28,4 +46,7 @@ module.exports = function(grunt) {
     'eslint'
   ]);
 
+  grunt.registerTask('build', [
+    'concat'
+  ]);
 };
