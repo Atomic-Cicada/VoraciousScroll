@@ -7,7 +7,8 @@ angular.module('smartNews', [
   'smartNews.services',
   'smartNews.graphServices',
   'ngSanitize',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'infinite-scroll'
 ])
 
 .config(function($urlRouterProvider, $stateProvider, $httpProvider) {
@@ -28,7 +29,6 @@ angular.module('smartNews', [
     .state('main.results', {
       url: '/results/:input',
       templateUrl: 'features/results/results.html',
-      controller: 'ResultsCtrl',
       authenticate: false
     })
 

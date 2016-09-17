@@ -49,7 +49,7 @@ module.exports = function(app, express) {
 
   app.route('/seearticle')
     .get(function(req, res) {
-      aylien.articleImport(req.query.input, res, req.query.start, req.query.end, req.query.limit);
+      aylien.articleImport(req.query.input, res, req.query.start, req.query.end, req.query.limit, req.query.nextPageCursor);
     });
 
   /************************ GOOGLE TRENDS **********************************/

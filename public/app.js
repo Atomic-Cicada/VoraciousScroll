@@ -14,3 +14,5 @@ require('./features/home/primaryArticle.js');
 require('./features/profile/profile.js');
 require('./features/nav/nav.js');
 require('./services/graphServices.js');
+require('ng-infinite-scroll');
+require('bluebird');

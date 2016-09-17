@@ -1,6 +1,14 @@
 angular.module('smartNews.results', ['chart.js'])
 
 .controller('ResultsCtrl', function($scope, $stateParams, $http, isAuth, saveArticle, renderGraph) {
+  $scope.resultsBusy = true;
+  $scope.articles = [];
+  $scope.nextPageCursor = '*';
+  $scope.nextPage = function(){
+    if ($scope.resultsBusy) return;
+    $scope.resultsBusy = true;
+    $scope.getArticle();
+  };
   $scope.articleReceived = $stateParams.articleReceived;
   $scope.selectedDate = renderGraph.selectedDate;
 
@@ -26,21 +34,20 @@ angular.module('smartNews.results', ['chart.js'])
     saveArticle(article);
   };
 
-  $scope.getArticle = function() {
+  $scope.getArticle = function(limit) {
     var input = $stateParams.input;
     var publishStart = $scope.selectedDate.startDate;
     var publishEnd = $scope.selectedDate.endDate;
-
-    var url = '/seearticle?input=' + input + '&start=' + publishStart + '&end=' + publishEnd;
-
+    var url = '/seearticle?input=' + input + '&start=' + publishStart + '&end=' + publishEnd + '&nextPageCursor=' + encodeURIComponent($scope.nextPageCursor);
     $http({
       method: 'GET',
       url: url
     }).then(
       function(data) {
         $scope.articleReceived = true;
-        $scope.articles = data.data.stories;
-        data.data.stories.forEach(function(story) {
+        $scope.nextPageCursor = data.data.nextPageCursor;
+        $scope.articles = $scope.articles.concat(data.data.stories);
+        $scope.articles.forEach(function(story) {
           $http({
             method: 'GET',
             url: '/api/toneanalysis',
@@ -56,6 +63,7 @@ angular.module('smartNews.results', ['chart.js'])
               }
               story.sentimentLabels = labelArr;
               story.sentimentData = scoreArr;
+              $scope.resultsBusy = false;
             });
         });
       },
